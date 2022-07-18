@@ -1,0 +1,57 @@
+site_url: https://tf2project.io
+site_name: Terraform Test Framework
+site_description: >-
+  The most expandable unified test framework to test Terraform codes and Terraform-provisioned infrastructures.
+site_author: Saeid Bostandoust
+copyright: Copyright &copy; 2022 Saeid Bostandoust
+use_directory_urls: false
+strict: false
+repo_name: tf2project/tf2
+repo_url: https://github.com/tf2project/tf2
+edit_uri: ""
+theme:
+  name: material
+  language: en
+  favicon: favicon.png
+  palette:
+    scheme: slate
+    primary: deep purple
+    accent: deep purple
+  features:
+    - navigation.expand
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - md_in_html
+  - meta
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      auto_title: true
+      linenums_style: pymdownx-inline
+      linenums: true
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:
+      permalink: true
+extra:
+  generator: false
+extra_css:
+  - assets/css/termynal.css
+extra_javascript:
+  - assets/js/termynal.js
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Policy as Code: docs/getting-started/policy-as-code.md
+      - End to End Tests: docs/getting-started/end-to-end-tests.md
+  - User Guide: user-guide.md
+  - Reference: reference.md
+  - About: about.md
