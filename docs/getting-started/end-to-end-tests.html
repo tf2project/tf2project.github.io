@@ -1,0 +1,639 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The most expandable unified test framework to test Terraform codes and Terraform-provisioned infrastructures.">
+      
+      
+        <meta name="author" content="Saeid Bostandoust">
+      
+      
+        <link rel="canonical" href="https://tf2project.io/docs/getting-started/end-to-end-tests.html">
+      
+      <link rel="icon" href="../../favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>End to End Tests - Terraform Test Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/custom.css">
+    
+      <link rel="stylesheet" href="../../assets/css/termynal.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-end-to-end-tests" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Terraform Test Framework" class="md-header__button md-logo" aria-label="Terraform Test Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Terraform Test Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              End to End Tests
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tf2project/tf2project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tf2project/tf2project
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Terraform Test Framework" class="md-nav__button md-logo" aria-label="Terraform Test Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Terraform Test Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tf2project/tf2project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tf2project/tf2project
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="policy-as-code.html" class="md-nav__link">
+        Policy as Code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          End to End Tests
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="end-to-end-tests.html" class="md-nav__link md-nav__link--active">
+        End to End Tests
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-end-to-end-test" class="md-nav__link">
+    Your first End to End test
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        User Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reference
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about.html" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-end-to-end-test" class="md-nav__link">
+    Your first End to End test
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="getting-started-end-to-end-tests">Getting Started: End to End Tests<a class="headerlink" href="#getting-started-end-to-end-tests" title="Permanent link">&para;</a></h1>
+<p>The purpose of End to End "<abbr title="End-to-End">e2e</abbr>" Tests is to make sure the behaviour of the software, infrastructure, etc., is what we expect. With TF2, you can implement <abbr title="End-to-End">e2e</abbr> tests to test your Terraform codes after they are deployed to real infrastructures.</p>
+<p>In the case of Terraform:</p>
+<ul>
+<li>DevOps engineers are responsible for writing Terraform codes as well as writing <abbr title="End-to-End">e2e</abbr> tests and integrating them into <abbr title="Continuous Integration">CI</abbr>/<abbr title="Continuous Deployment">CD</abbr> pipelines.</li>
+</ul>
+<p>From now on, TF2 is always there for you to test your Terraform-provisioned infrastructures. Not only infrastructures but also everything you managed and deployed by the Terraform, as well as all Terraform <u>data</u> resources. Moreover, TF2 can be integrated into your <abbr title="Continuous Deployment">CD</abbr> pipelines, and after deploying the new Terraform codes, you can run the tests to test the infrastructure's behaviour in the real world. If something goes wrong or is unusual, you can detect it and rollback the system to the previous working state. With this approach, you can deliver better and more reliable infrastructures and reduce your unexpected situations and downtimes.</p>
+<div class="admonition check">
+<p class="admonition-title">I'm compatible</p>
+<p>TF2 is fully compatible with Jenkins <abbr title="Continuous Integration">CI</abbr>, Gitlab <abbr title="Continuous Integration">CI</abbr>, GitHub Actions and Azure Pipelines.</p>
+</div>
+<h2 id="your-first-end-to-end-test">Your first End to End test<a class="headerlink" href="#your-first-end-to-end-test" title="Permanent link">&para;</a></h2>
+<p>Consider the following Terraform code. It's a standard Terraform code to deploy a Docker container. To test this scenario, you should install Docker on your local machine.</p>
+<div class="highlight"><span class="filename">main.tf</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nb">docker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;kreuzwerker/docker&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;= 2.16&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;docker&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;unix:///var/run/docker.sock&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;docker_container&quot;</span><span class="w"> </span><span class="nv">&quot;nginx&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="na">name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nginx&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="na">image</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nginx:1&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">  </span><span class="na">restart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;unless-stopped&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="18 "></span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;nginx_address&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://localhost&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="22 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Now deploy the Docker container by running the following commands:</p>
+<div id="termynal-terraform-deploy-docker-container" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
+  <span data-ty="input" data-ty-prompt="$">terraform init</span>
+  <span data-ty="progress" data-ty-progressChar="="></span>
+  <span data-ty="input" data-ty-prompt="$">terraform apply</span>
+  <span data-ty>Do you want to perform these actions?</span>
+  <span data-ty="input" data-ty-prompt="Enter a value:">yes</span>
+  <span data-ty>docker_container.nginx: Creating...</span>
+  <span data-ty="progress" data-ty-progressChar="="></span>
+  <span data-ty>Apply complete! Resources: 1 added, 0 destroyed.</span>
+  <span data-ty>Outputs:</span>
+  <span data-ty>nginx_address = "http://localhost"</span>
+</div>
+
+<p>Our desired state about the deployed container:</p>
+<ul>
+<li>The container should be run without any problem.</li>
+<li>The container can be accessed by the <u>nginx_address</u> output.</li>
+</ul>
+<p>To automate testing the container status and accessibility, write the following code:</p>
+<div class="highlight"><span class="filename">tests.py</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">tf2</span> <span class="kn">import</span> <span class="n">Tf2</span><span class="p">,</span> <span class="n">LocalCommandExecutor</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">tf2</span> <span class="o">=</span> <span class="n">Tf2</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="nd">@tf2</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;resources.docker_container.nginx&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="k">def</span> <span class="nf">test_nginx_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="k">assert</span> <span class="n">LocalCommandExecutor</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="sa">f</span><span class="s2">&quot;docker container inspect </span><span class="si">{</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">name</span> <span class="si">}</span><span class="s2"> -f &#39;</span><span class="se">{{{{</span><span class="s2"> .State.Status </span><span class="se">}}}}</span><span class="s2">&#39;&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;running&quot;</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@tf2</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="s2">&quot;resources.docker_container.nginx&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">def</span> <span class="nf">test_nginx_public_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="k">assert</span> <span class="n">LocalCommandExecutor</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;curl -s </span><span class="si">{</span> <span class="n">tf2</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">nginx_address</span><span class="o">.</span><span class="n">value</span> <span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="n">tf2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<p>Now, run the test script and see the result. Before running tests, make sure you have installed the <strong>tf2project</strong> package. Run <code>pip install tf2project</code> to install it on your machine.</p>
+<p>Run your TF2 tests with the following command:</p>
+<div id="termynal-tf2-run-tests" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
+  <span data-ty="input" data-ty-prompt="$">python tests.py</span>
+</div>
+
+<p align="center">
+  <img src="/assets/img/getting-started-end-to-end-tests-failed-result.png" alt="TF2 Tests Failed">
+</p>
+
+<p>As you can see, the test has failed because the container cannot be accessed through the network as we expected. Actually, this problem happened because of resource misconfiguration, and such problems are out of Terraform's scope, and it cannot detect them.</p>
+<p>Now update the Terraform code to the following code, apply it, and run the tests again.</p>
+<div class="highlight"><span class="filename">main.tf</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nb">docker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;kreuzwerker/docker&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;= 2.16&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;docker&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;unix:///var/run/docker.sock&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;docker_container&quot;</span><span class="w"> </span><span class="nv">&quot;nginx&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="na">name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nginx&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="na">image</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;nginx:1&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">  </span><span class="na">restart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;unless-stopped&quot;</span><span class="w"></span>
+<span class="hll"><span class="linenos" data-linenos="18 "></span><span class="w">  </span><span class="nb">ports</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+</span><span class="hll"><span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="na">internal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">80</span><span class="w"></span>
+</span><span class="hll"><span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="na">external</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">80</span><span class="w"></span>
+</span><span class="hll"><span class="linenos" data-linenos="21 "></span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+</span><span class="linenos" data-linenos="22 "></span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;nginx_address&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://localhost&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="26 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Run the following commands to apply and test:</p>
+<div id="termynal-terraform-redeploy-docker-container" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
+  <span data-ty="input" data-ty-prompt="$">terraform apply</span>
+  <span data-ty>Do you want to perform these actions?</span>
+  <span data-ty="input" data-ty-prompt="Enter a value:">yes</span>
+  <span data-ty>docker_container.nginx: Destroying...</span>
+  <span data-ty>docker_container.nginx: Destruction complete after 0s</span>
+  <span data-ty>docker_container.nginx: Creating...</span>
+  <span data-ty="progress" data-ty-progressChar="="></span>
+  <span data-ty>Apply complete! Resources: 1 added, 1 destroyed.</span>
+  <span data-ty>Outputs:</span>
+  <span data-ty>nginx_address = "http://localhost"</span>
+  <span data-ty="input" data-ty-prompt="$">python tests.py</span>
+</div>
+
+<p align="center">
+  <img src="/assets/img/getting-started-end-to-end-tests-passed-result.png" alt="TF2 Tests Passed">
+</p>
+
+<div class="admonition info">
+<p class="admonition-title">Result</p>
+<p>If tests pass, the test script will be exited with return code <strong>0</strong>, and <strong>passed</strong> will be written to the <u>.tf2result</u> file, and if they fail, the test script will be exited with return code <strong>1</strong>, and <strong>failed</strong> will be written to the <u>.tf2result</u> file.</p>
+</div>
+<p>That's it. You wrote your first End to End test with Terraform Test Framework. Now, you can deliver better and more reliable Terraform-provisioned infrastructures.</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="policy-as-code.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Policy as Code" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Policy as Code
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../about.html" class="md-footer__link md-footer__link--next" aria-label="Next: About" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Saeid Bostandoust
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.instant", "navigation.tracking", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../assets/js/termynal.js"></script>
+      
+    
+  </body>
+</html>
