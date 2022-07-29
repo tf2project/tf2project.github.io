@@ -43,6 +43,9 @@ markdown_extensions:
       permalink: true
 extra:
   generator: false
+  analytics:
+    provider: google
+    property: G-Y3PQZ5E18Q
 extra_css:
   - assets/css/custom.css
   - assets/css/termynal.css
