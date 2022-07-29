@@ -6,8 +6,8 @@ site_author: Saeid Bostandoust
 copyright: Copyright &copy; 2022 Saeid Bostandoust
 use_directory_urls: false
 strict: false
-repo_name: tf2project/tf2
-repo_url: https://github.com/tf2project/tf2
+repo_name: tf2project/tf2project
+repo_url: https://github.com/tf2project/tf2project
 edit_uri: ""
 theme:
   name: material

@@ -1,7 +1,7 @@
 # Terraform Test Framework
 
 <p align="center">
-  <img src="./assets/img/logo.png">
+  <img src="./assets/img/logo.png" alt="Terraform Test Framework">
 </p>
 
 <p align="center">Unified Test Framework to test Terraform codes and Terraform-provisioned infrastructures.</p>
@@ -11,18 +11,18 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/last-commit/tf2project/tf2" alt="GitHub last commit">
-  <a href="https://github.com/tf2project/tf2/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/tf2project/tf2" alt="GitHub license"></a>
-  <a href="https://github.com/tf2project/tf2/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/tf2project/tf2" alt="GitHub stars"></a>
-  <a href="https://github.com/tf2project/tf2/network" target="_blank"><img src="https://img.shields.io/github/forks/tf2project/tf2" alt="GitHub forks"></a>
-  <a href="https://github.com/tf2project/tf2/issues" target="_blank"><img src="https://img.shields.io/github/issues/tf2project/tf2" alt="GitHub issues"></a>
+  <img src="https://img.shields.io/github/last-commit/tf2project/tf2project" alt="GitHub last commit">
+  <a href="https://github.com/tf2project/tf2project/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/tf2project/tf2project" alt="GitHub license"></a>
+  <a href="https://github.com/tf2project/tf2project/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/tf2project/tf2project" alt="GitHub stars"></a>
+  <a href="https://github.com/tf2project/tf2project/network" target="_blank"><img src="https://img.shields.io/github/forks/tf2project/tf2project" alt="GitHub forks"></a>
+  <a href="https://github.com/tf2project/tf2project/issues" target="_blank"><img src="https://img.shields.io/github/issues/tf2project/tf2project" alt="GitHub issues"></a>
 </p>
 
 ---
 
 **Documentation:** <a href="https://tf2project.io" target="_blank">https://tf2project.io</a>
 
-**Source Code:** <a href="https://github.com/tf2project/tf2" target="_blank">https://github.com/tf2project/tf2</a>
+**Source Code:** <a href="https://github.com/tf2project/tf2project" target="_blank">https://github.com/tf2project/tf2project</a>
 
 ---
 
@@ -95,8 +95,8 @@ The TF2 core is just using standard and official Python libraries.
 
 ## Installation
 
-<div id="termynal-tf2-installation" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
-  <span data-ty="input" data-ty-prompt="$">pip install tf2</span>
+<div id="termynal-tf2project-installation" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
+  <span data-ty="input" data-ty-prompt="$">pip install tf2project</span>
   <span data-ty="progress" data-ty-progressChar="="></span>
 </div>
 
