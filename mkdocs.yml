@@ -44,6 +44,7 @@ markdown_extensions:
 extra:
   generator: false
 extra_css:
+  - assets/css/custom.css
   - assets/css/termynal.css
 extra_javascript:
   - assets/js/termynal.js
@@ -52,6 +53,6 @@ nav:
   - Getting Started:
       - Policy as Code: docs/getting-started/policy-as-code.md
       - End to End Tests: docs/getting-started/end-to-end-tests.md
-  - User Guide: user-guide.md
-  - Reference: reference.md
+  - User Guide: ""
+  - Reference: ""
   - About: about.md
