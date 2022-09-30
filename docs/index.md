@@ -7,7 +7,7 @@
 <p align="center">Unified Test Framework to test Terraform codes and Terraform-provisioned infrastructures.</p>
 
 <p align="center">
-<strong>The first release, v0.1.0 (Shadowman) is now available.</strong>
+<strong>The new version, v0.2.0 (Freedom) is now available.</strong>
 </p>
 
 <p align="center">
@@ -23,6 +23,8 @@
 **Documentation:** <a href="https://tf2project.io" target="_blank">https://tf2project.io</a>
 
 **Source Code:** <a href="https://github.com/tf2project/tf2project" target="_blank">https://github.com/tf2project/tf2project</a>
+
+**Changelog:** <a href="https://tf2project.io/changelog.html" target="_blank">https://tf2project.io/changelog.html</a>
 
 ---
 
@@ -60,7 +62,7 @@ TF2 is fully compatible and can be integrated with:
 
 ### Comparison
 
-##### TF2 vs. Sentinel
+##### TF2 vs. HashiCorp Sentinel
 
 Terraform Cloud and Terraform Enterprise come with a Policy-as-Code tool called **Sentinel**. Sentinel uses its programming language, and you should learn a new language to implement your tests. Of course, just policy as code. Moreover, none of them provides a solution to implement e2e(End to End) tests. With TF2, you can write both with the most DevOps engineers-friendly programming language, Python. TF2 is also available for Terraform open-source users.
 
@@ -69,7 +71,7 @@ Terraform Cloud and Terraform Enterprise come with a Policy-as-Code tool called 
 | **Policy-as-Code**   | :white_check_mark: | :x: | :white_check_mark: | :white_check_mark: |
 | **End-to-End Tests** | :white_check_mark: | :x: | :x:                | :x:                |
 
-##### TF2 vs. Terratest
+##### TF2 vs. Gruntwork Terratest
 
 Terratest is a good tool by Gruntwork which allows you to implement e2e tests, but it doesn't provide any Policy-as-Code solution. To write your tests with Terratest, you should know how to write Go applications. TF2 makes the test world for DevOps engineers really easy. You can write your PaC and e2e tests in Python, DevOps engineers' lovely language.
 
@@ -98,6 +100,16 @@ The TF2 core is just using standard and official Python libraries.
 <div id="termynal-tf2project-installation" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
   <span data-ty="input" data-ty-prompt="$">pip install tf2project</span>
   <span data-ty="progress" data-ty-progressChar="="></span>
+</div>
+
+## Docker Image
+
+You can also use our official Docker image to run the framework. The image consists of the latest version of Terraform and the TF2 framework itself.
+
+It's a ready-to-go image to integrate the TF2 within CI/CD pipelines.
+
+<div id="termynal-tf2project-docker-image" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
+  <span data-ty="input" data-ty-prompt="$">docker run tf2project/tf2project:latest</span>
 </div>
 
 ## License

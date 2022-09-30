@@ -58,4 +58,5 @@ nav:
       - End to End Tests: docs/getting-started/end-to-end-tests.md
   - User Guide: ""
   - Reference: ""
+  - Changelog: changelog.md
   - About: about.md
