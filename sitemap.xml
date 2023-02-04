@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://tf2project.io/index.html</loc>
-         <lastmod>2022-09-30</lastmod>
+         <lastmod>2023-02-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tf2project.io/about.html</loc>
-         <lastmod>2022-09-30</lastmod>
+         <lastmod>2023-02-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tf2project.io/changelog.html</loc>
-         <lastmod>2022-09-30</lastmod>
+         <lastmod>2023-02-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tf2project.io/docs/getting-started/end-to-end-tests.html</loc>
-         <lastmod>2022-09-30</lastmod>
+         <lastmod>2023-02-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tf2project.io/docs/getting-started/policy-as-code.html</loc>
-         <lastmod>2022-09-30</lastmod>
+         <lastmod>2023-02-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
